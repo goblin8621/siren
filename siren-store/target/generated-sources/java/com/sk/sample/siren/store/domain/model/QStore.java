@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -17,25 +18,42 @@ public class QStore extends EntityPathBase<Store> {
 
     private static final long serialVersionUID = -885122941L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QStore store = new QStore("store");
 
     public final com.sk.sample.siren.shared.base.QAbstractEntity _super = new com.sk.sample.siren.shared.base.QAbstractEntity(this);
+
+    public final com.sk.sample.siren.shared.domain.QAddress address;
 
     //inherited
     public final NumberPath<Long> id = _super.id;
 
     public final StringPath name = createString("name");
 
+    public final StringPath openYN = createString("openYN");
+
+    public final StringPath phoneNo = createString("phoneNo");
+
     public QStore(String variable) {
-        super(Store.class, forVariable(variable));
+        this(Store.class, forVariable(variable), INITS);
     }
 
     public QStore(Path<? extends Store> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QStore(PathMetadata metadata) {
-        super(Store.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QStore(PathMetadata metadata, PathInits inits) {
+        this(Store.class, metadata, inits);
+    }
+
+    public QStore(Class<? extends Store> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.address = inits.isInitialized("address") ? new com.sk.sample.siren.shared.domain.QAddress(forProperty("address")) : null;
     }
 
 }
