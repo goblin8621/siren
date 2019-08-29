@@ -24,16 +24,18 @@ public class QStore extends EntityPathBase<Store> {
 
     public final com.sk.sample.siren.shared.base.QAbstractEntity _super = new com.sk.sample.siren.shared.base.QAbstractEntity(this);
 
-    public final com.sk.sample.siren.shared.domain.QAddress address;
+    public final StringPath address = createString("address");
 
     //inherited
     public final NumberPath<Long> id = _super.id;
 
     public final StringPath name = createString("name");
 
-    public final StringPath openYN = createString("openYN");
+    public final StringPath openYn = createString("openYn");
 
-    public final StringPath phoneNo = createString("phoneNo");
+    public final StringPath ownerAccountId = createString("ownerAccountId");
+
+    public final QStoreDescription storeDescription;
 
     public QStore(String variable) {
         this(Store.class, forVariable(variable), INITS);
@@ -53,7 +55,7 @@ public class QStore extends EntityPathBase<Store> {
 
     public QStore(Class<? extends Store> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.address = inits.isInitialized("address") ? new com.sk.sample.siren.shared.domain.QAddress(forProperty("address")) : null;
+        this.storeDescription = inits.isInitialized("storeDescription") ? new QStoreDescription(forProperty("storeDescription")) : null;
     }
 
 }
