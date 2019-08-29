@@ -19,4 +19,5 @@ public interface AccountService {
 	Account update(Long id, Account account);
 
 	void delete(Long id);
+	void deleteByAccountId(String accountId);
 }
