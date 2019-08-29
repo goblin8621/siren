@@ -140,49 +140,4 @@ public class AccountApplication {
 		System.out.println("Result: " + account.toString());
 	}
 	
-//	public void executeExample4(AccountRepository accountRepository) {
-//		QAccount.account.name.like("강%");
-//		Account account = accountRepository.findOne(QAccount.account.email.eq("hong@sk.com"));
-//		
-//		account.setAddress(Address.builder().zipCode(10000).homeAddress("경기도 성남시").build());
-//		accountRepository.save(account);
-//		
-//		displayAccounts(accountRepository);
-//	}
-//	
-//	public void executeExample5(AccountRepository accountRepository) {
-//		List<Account> account = accountRepository.findAll(QAccount.account.address.zipCode.eq(12345));
-//		System.out.println("Result: " + account.toString());
-//	}
-//	
-//	public void executeExample6(AccountRepository accountRepository) {
-//		List<Account> account = accountRepository.findAll(QAccount.account.address.homeAddress.like("성남"));
-//		System.out.println("Result: " + account.toString());
-//	}
-//	
-//	public void executeExample7(AccountRepository accountRepository) {
-//		Predicate predicate = QAccount.account.memberType.eq(MemberType.BUYER).and(
-//				              QAccount.account.membershipLevelType.eq(MembershipLevelType.VIP));
-//		List<Account> account = accountRepository.findAll(predicate);
-//		System.out.println("Result: " + account.toString());
-//	}
-	
-	/*
-	@Bean
-	public CommandLineRunner execSampleCode2(@Qualifier("accountLogic") AccountService accountService) {
-		return (args) -> {
-			Account account = new Account("iu@sk.com", "아이유", MemberType.BUYER, MembershipLevelType.VIP);
-			accountService.register(account);
-			
-			Account result = accountService.findByEmail("iu@sk.com");
-			System.out.println("Component API Result - " + result);
-			
-			result.setAddress(new Address(11111, "서울시 영등포구"));
-			accountService.update(result.getId(), result);
-			
-			Account result2 = accountService.findByEmail("iu@sk.com");
-			System.out.println("Component API Result2 - " + result2);
-		};
-	}
-	*/
 }
