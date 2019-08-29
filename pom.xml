@@ -13,14 +13,12 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<siren-shared.version>0.0.1-SNAPSHOT</siren-shared.version>
 		<spring-boot.version>1.5.20.RELEASE</spring-boot.version>
 		<querydsl.version>4.2.1</querydsl.version>
 		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
 	<modules>
-		<module>siren-shared</module>
 		<module>siren-account</module>
 		<module>siren-product</module>
 		<module>siren-store</module>
@@ -94,11 +92,6 @@
 				<version>${spring-boot.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.sk.sample</groupId>
-				<artifactId>siren-shared</artifactId>
-				<version>${siren-shared.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
