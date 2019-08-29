@@ -1,3 +1,4 @@
+//product.java
 package com.sk.sample.siren.product.domain.model;
 
 import javax.persistence.Entity;
@@ -9,14 +10,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true) 
 @Entity
 public class Product extends AbstractEntity implements AggregateRoot {
 
 	private Integer price;
 	private Integer stock;
 
-	private Long storeId;
+	private Long storeId; 
 
 	private String name;
 	private String misc;

@@ -71,4 +71,10 @@ public class AccountLogic implements AccountService {
 	public void delete(Long id) {
 		accountRepository.delete(id);
 	}
+	
+	@Override
+	@Transactional
+	public void deleteByAccountId(String accountId) {
+		accountRepository.deleteByAccountId(accountId);
+	}
 }
