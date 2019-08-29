@@ -38,4 +38,3 @@ public class Account extends AbstractEntity implements AggregateRoot {
 
 	}
 }
-
