@@ -1,17 +1,16 @@
 package com.sk.sample.siren.account;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.sk.sample.siren.account.domain.model.*;
+import com.sk.sample.siren.account.domain.repository.AuthoritiesRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.querydsl.core.types.Predicate;
-import com.sk.sample.siren.account.domain.model.Account;
-import com.sk.sample.siren.account.domain.model.MemberType;
-import com.sk.sample.siren.account.domain.model.MembershipLevelType;
-import com.sk.sample.siren.account.domain.model.QAccount;
 import com.sk.sample.siren.account.domain.repository.AccountRepository;
 import com.sk.sample.siren.shared.domain.Address;
 
@@ -22,9 +21,9 @@ public class AccountApplication {
 	}
 
 	@Bean
-	public CommandLineRunner execSampleCode(AccountRepository accountRepository) {	
+	public CommandLineRunner execSampleCode(AccountRepository accountRepository, AuthoritiesRepository authoritiesRepository) {
 		return (args) -> {
-			insertAccounts(accountRepository);
+			insertAccounts(accountRepository, authoritiesRepository);
 			displayAccounts(accountRepository);
 			
 			executeExample00(accountRepository);		//select
@@ -33,27 +32,55 @@ public class AccountApplication {
 		};
 	}
 		
-	public void insertAccounts(AccountRepository accountRepository) {
+	public void insertAccounts(AccountRepository accountRepository, AuthoritiesRepository authoritiesRepository) {
 		
+
 		Account account1 = new Account("skyk", "1234", "skyk@sk.com", "안영기", MemberType.BUYER, MembershipLevelType.VIP ,  "010-1111-2222");
 		account1.setAddress(new Address(00000, "성남시 분당구"));
 		accountRepository.save(account1);
 		
+		Authorities authorities = new Authorities();
+		authorities.setId(UUID.randomUUID().toString());
+		authorities.setAccountId("skyk");
+		authorities.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
+		
 		Account account2 = new Account("brightsoil","1234", "brightsoil@sk.com", "김현규", MemberType.SELLER, "010-2222-2222");
 		account2.setAddress(new Address(12345, "서울시 송파구"));
 		accountRepository.save(account2);
+		Authorities authorities2 = new Authorities();
+		authorities2.setId(UUID.randomUUID().toString());
+		authorities2.setAccountId("brightsoil");
+		authorities2.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
+		
 		
 		Account account3 = new Account("edgar.kim","1234","edgar.kim@sk.com", "김종국", MemberType.SELLER,  "010-3333-2222");
 		account3.setAddress(new Address(11111, "서울시 강동구"));
 		accountRepository.save(account3);
+		Authorities authorities3 = new Authorities();
+		authorities3.setId(UUID.randomUUID().toString());
+		authorities3.setAccountId("edgar.kim");
+		authorities3.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 		
 		Account account4 = new Account("goblin8621","1234","goblin8621@sk.com", "백동훈", MemberType.BUYER, MembershipLevelType.GOLD, "010-4444-2222");
 		account4.setAddress(new Address(22222, "서울시 노원구"));
 		accountRepository.save(account4);
+		Authorities authorities4 = new Authorities();
+		authorities4.setId(UUID.randomUUID().toString());
+		authorities4.setAccountId("goblin8621");
+		authorities4.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 		
 		Account account5 = new Account("kangyj11","1234","kangyj11@sk.com", "강영주", MemberType.BUYER, MembershipLevelType.GOLD, "010-5555-2222");
 		account5.setAddress(new Address(33333, "경기도 이천시"));
 		accountRepository.save(account5);
+		Authorities authorities5 = new Authorities();
+		authorities5.setId(UUID.randomUUID().toString());
+		authorities5.setAccountId("kangyj11");
+		authorities5.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 	}
 	
 	public void displayAccounts(AccountRepository accountRepository) {
