@@ -1,20 +1,12 @@
 package com.sk.sample.siren.product;
 
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 
-import com.querydsl.core.types.Predicate;
-import com.sk.sample.siren.product.domain.model.ColorType;
-import com.sk.sample.siren.product.domain.model.Money;
 import com.sk.sample.siren.product.domain.model.Product;
-import com.sk.sample.siren.product.domain.model.ProductDescription;
-import com.sk.sample.siren.product.domain.model.QProduct;
-import com.sk.sample.siren.product.domain.model.SizeType;
 import com.sk.sample.siren.product.domain.repository.ProductRepository;
 
 @SpringBootApplication
@@ -30,38 +22,50 @@ public class ProductApplication {
 		return (args) -> {
 			insertProducts(accountRepository);
 			displayProducts(accountRepository);
-			
-			executeExample2(accountRepository);
-			executeExample3(accountRepository);
-			executeExample4(accountRepository);
-			executeExample5(accountRepository);
-			executeExample6(accountRepository);
-			executeExample7(accountRepository);
+//			
+//			executeExample2(accountRepository);
+//			executeExample3(accountRepository);
+//			executeExample4(accountRepository);
+//			executeExample5(accountRepository);
+//			executeExample6(accountRepository);
+//			executeExample7(accountRepository);
 		};
 	}
 	
+	
 	public void insertProducts(ProductRepository productRepository) {
-		Product product1 = new Product("Iron Man", new Money(30000), new ProductDescription(ColorType.RED, SizeType.L));
+		Product product1 = new Product(1L, "아메리카노", 3000, 10);
+		product1.setMisc("아메리카노입니다.");
 		productRepository.save(product1);
 		
-		Product product2 = new Product("Captain America", new Money(20000), new ProductDescription(ColorType.BLUE, SizeType.M));
+		Product product2 = new Product(1L, "라떼", 3000, 15);
 		productRepository.save(product2);
 		
-		Product product3 = new Product("Winter Soldier", new Money(15000), new ProductDescription(ColorType.BLUE, SizeType.M));
+		Product product3 = new Product(1L, "카페오카", 4500, 5);
 		productRepository.save(product3);
+		
+		Product product4 = new Product(1L, "아이스티", 2800, 10);
+		productRepository.save(product4);
+		
+		Product product5 = new Product(1L, "에스프레소", 2000, 3);
+		productRepository.save(product5);		
 	}
 	
+
+	
 	public void displayProducts(ProductRepository productRepository) {
-		System.out.println("***************************************************************");
+		System.out.println("ProductRepository start ******************************************");
 		
 		Iterable<Product> productList = productRepository.findAll();
 		for(Product product : productList) {
 			System.out.println(product.toString());	
 		}
 		
-		System.out.println("***************************************************************");
+		System.out.println("ProductRepository end ******************************************");
 	}
 	
+
+	/*	
 	public void executeExample2(ProductRepository productRepository) {
 		Product product = productRepository.findByName("Iron Man");
 		
@@ -106,4 +110,7 @@ public class ProductApplication {
 		List<Product> product2 = productRepository.findAll(predicate);
 		System.out.println("Result2: " + product2.toString());
 	}
+*/
+
+	
 }

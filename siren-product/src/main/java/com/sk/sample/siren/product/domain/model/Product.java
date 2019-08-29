@@ -9,18 +9,23 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Product extends AbstractEntity implements AggregateRoot {
+
+	private Integer price;
+	private Integer stock;
+
+	private Long storeId;
+
 	private String name;
-	private Money price;
-	
-	private ProductDescription productDescription;
-	
-	public Product(String name, Money price, ProductDescription productDescription) {
+	private String misc;
+
+	public Product(Long storeId, String name,Integer price, Integer stock) {
+		this.storeId = storeId;
 		this.name = name;
 		this.price = price;
-		this.productDescription = productDescription;
+		this.stock = stock;
 	}
-}
 
+}
