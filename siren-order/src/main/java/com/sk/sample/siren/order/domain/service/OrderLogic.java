@@ -37,12 +37,12 @@ public class OrderLogic implements OrderService {
 		
 		System.out.println("product info1 ******************************************");
 		System.out.println(product);
-		
-		if (product.getStock() <= 0) {
+
+		if ((product.getStock() - order.getQty()) < 0) {
 			System.err.println("have no stock err");
 			return;
 		}
-		
+
 		product.setStock( product.getStock() - order.getQty() );
 		productProxy.productsUpdate(product.getId(), product);
 		
