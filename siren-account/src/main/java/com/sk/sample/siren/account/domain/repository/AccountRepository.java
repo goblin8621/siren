@@ -25,6 +25,10 @@ public interface AccountRepository extends PagingAndSortingRepository<Account, L
 	List<Account> findByAddressHomeAddressLike(@Param("homeAddress") String homeAddress);
 	
 
-	List<Account> findAll(Predicate predicate); 
+	List<Account> findAll(Predicate predicate);
+	Account findByAccountId(@Param("accounId") String accounId);
+	
+	//@Query("delete from Account a where a.accountId = ?1")
+	Account deleteByAccountId(@Param("accountId") String accountId);
 	
 }

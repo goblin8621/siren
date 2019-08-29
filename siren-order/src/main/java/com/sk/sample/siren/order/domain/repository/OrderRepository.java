@@ -7,5 +7,5 @@ import com.sk.sample.siren.order.domain.model.Order;
 
 @RepositoryRestResource
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
-
+	
 }

@@ -72,5 +72,10 @@ public class AccountRestController implements AccountService {
 		return accountService.findAll(pageable); 
 	}
 
+	@Override
+	@DeleteMapping("/{accountId}")
+	public void deleteByAccountId(@PathVariable("accountId") String accountid) {
+		accountService.deleteByAccountId(accountid);
+	}
 
 }
