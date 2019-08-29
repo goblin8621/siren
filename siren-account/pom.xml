@@ -18,6 +18,7 @@
 			<groupId>com.sk.sample</groupId>
 			<artifactId>siren-shared</artifactId>
 		</dependency>
+
 	</dependencies>
 
 </project>

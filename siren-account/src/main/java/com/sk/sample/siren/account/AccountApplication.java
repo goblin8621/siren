@@ -1,17 +1,16 @@
 package com.sk.sample.siren.account;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.sk.sample.siren.account.domain.model.*;
+import com.sk.sample.siren.account.domain.repository.AuthoritiesRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.querydsl.core.types.Predicate;
-import com.sk.sample.siren.account.domain.model.Account;
-import com.sk.sample.siren.account.domain.model.MemberType;
-import com.sk.sample.siren.account.domain.model.MembershipLevelType;
-import com.sk.sample.siren.account.domain.model.QAccount;
 import com.sk.sample.siren.account.domain.repository.AccountRepository;
 import com.sk.sample.siren.shared.domain.Address;
 
@@ -22,30 +21,50 @@ public class AccountApplication {
 	}
 
 	@Bean
-	public CommandLineRunner execSampleCode(AccountRepository accountRepository) {	
+	public CommandLineRunner execSampleCode(AccountRepository accountRepository, AuthoritiesRepository authoritiesRepository) {
 		return (args) -> {
-			insertAccounts(accountRepository);
+			insertAccounts(accountRepository, authoritiesRepository);
 			displayAccounts(accountRepository);
 			
 			executeExample1(accountRepository);
 		};
 	}
 		
-	public void insertAccounts(AccountRepository accountRepository) {
+	public void insertAccounts(AccountRepository accountRepository, AuthoritiesRepository authoritiesRepository) {
 		
-		Account account1 = new Account("hong@sk.com", "홍길동", MemberType.BUYER);
+		Account account1 = new Account("hong@sk.com","1111", "홍길동", MemberType.BUYER);
+		Authorities authorities = new Authorities();
+		authorities.setId(UUID.randomUUID().toString());
+		authorities.setUsername("hong@sk.com");
+		authorities.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 		accountRepository.save(account1);
 		
-		Account account2 = new Account("kang@sk.com", "강호동", MemberType.BUYER, MembershipLevelType.VIP);
+		Account account2 = new Account("kang@sk.com","1111", "강호동", MemberType.BUYER, MembershipLevelType.VIP);
 		account2.setAddress(new Address(12345, "서울시 강남구"));
+		Authorities authoritie2 = new Authorities();
+		authoritie2.setId(UUID.randomUUID().toString());
+		authoritie2.setUsername("kang@sk.com");
+		authoritie2.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authoritie2);
 		accountRepository.save(account2);
 		
-		Account account3 = new Account("yu@gmail.com", "유재석", MemberType.SELLER);
+		Account account3 = new Account("yu@gmail.com","1111", "유재석", MemberType.SELLER);
 		account3.setAddress(new Address(10000, "경기도 성남시"));
+		Authorities authorities3 = new Authorities();
+		authorities3.setId(UUID.randomUUID().toString());
+		authorities3.setUsername("yu@gmail.com");
+		authorities3.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities3);
 		accountRepository.save(account3);
 		
-		Account account4 = new Account("shin@sk.com", "신동엽", MemberType.BUYER, MembershipLevelType.GOLD);
+		Account account4 = new Account("shin@sk.com","1111", "신동엽", MemberType.BUYER, MembershipLevelType.GOLD);
 		account4.setAddress(new Address(12345, "서울시 강남구"));
+		Authorities authorities4 = new Authorities();
+		authorities4.setId(UUID.randomUUID().toString());
+		authorities4.setUsername("shin@sk.com");
+		authorities4.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities4);
 		accountRepository.save(account4);
 	}
 	

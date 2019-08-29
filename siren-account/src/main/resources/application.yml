@@ -2,6 +2,9 @@ server:
   port: 11001
 
 spring:
+  security:
+    users-by-username-query: "SELECT email, password, 'true' FROM account WHERE email=?"
+    authorities-by-username-query: "SELECT username, authority FROM authorities WHERE username=?"
   profiles:
     active: 
     - default

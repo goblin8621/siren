@@ -17,6 +17,7 @@ import lombok.EqualsAndHashCode;
 public class Account extends AbstractEntity implements AggregateRoot {
 	private String email;
 	private String name;
+	private String password;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private MemberType memberType;
@@ -26,12 +27,13 @@ public class Account extends AbstractEntity implements AggregateRoot {
 	
 	private Address address;
 	
-	public Account(String email, String name, MemberType memberType) {
-		this(email, name, memberType, MembershipLevelType.SILVER);
+	public Account(String email, String password, String name, MemberType memberType) {
+		this(email, password, name, memberType, MembershipLevelType.SILVER);
 	}
 	
-	public Account(String email, String name, MemberType memberType, MembershipLevelType membershipLevelType) {
+	public Account(String email, String password, String name, MemberType memberType, MembershipLevelType membershipLevelType) {
 		this.email = email;
+		this.password = password;
 		this.name = name;
 		this.memberType = memberType;
 		this.membershipLevelType = membershipLevelType;
