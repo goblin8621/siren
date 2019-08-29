@@ -4,6 +4,6 @@ public interface OrderService {
 	
 	void purchase(Long orderId);
 	
-	Long order(Long accountId, Long storeId, Long productId, Integer qty);
+	Long order(Long accountId, Long productId, Integer qty);
 	
 }

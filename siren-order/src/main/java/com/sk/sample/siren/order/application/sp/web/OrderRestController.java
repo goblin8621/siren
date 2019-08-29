@@ -24,8 +24,8 @@ public class OrderRestController implements OrderService {
 
 	@Override
 	@PostMapping("/order")
-	public Long order(Long accountId, Long storeId, Long productId, Integer qty) {
-		Long orderId = orderService.order(accountId, storeId, productId, qty);
+	public Long order(Long accountId, Long productId, Integer qty) {
+		Long orderId = orderService.order(accountId, productId, qty);
 		orderService.purchase(orderId);
 		
 		return orderId;
