@@ -76,7 +76,7 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-data-rest</artifactId>
 			<version>${swagger.version}</version>
-		</dependency>
+		</dependency>		
 	</dependencies>
 
 	<dependencyManagement>
