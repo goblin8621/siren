@@ -23,6 +23,11 @@ spring:
         format_sql: true
         sql_comments: true
 
+security:
+  basic:
+    enabled: true
+    authorize-mode: NONE
+
 logging:
   level: 
     org.hibernate.type: trace
