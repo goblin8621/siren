@@ -3,9 +3,7 @@ package com.sk.sample.siren.order.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sk.sample.siren.order.application.proxy.feign.AccountProxy;
 import com.sk.sample.siren.order.application.proxy.feign.ProductProxy;
-import com.sk.sample.siren.order.application.proxy.feign.dto.account.Account;
 import com.sk.sample.siren.order.application.proxy.feign.dto.product.Product;
 import com.sk.sample.siren.order.domain.model.Order;
 import com.sk.sample.siren.order.domain.repository.OrderRepository;
@@ -16,45 +14,46 @@ public class OrderLogic implements OrderService {
 	private OrderRepository orderRepository;
 	
 	@Autowired
-	private AccountProxy accountProxy;
-	
-	@Autowired
 	private ProductProxy productProxy;
 	
 	public void purchase(Long orderId) {
-		Order order = orderRepository.findOne(orderId);
+		System.out.println("purchase start ******************************************");
 		
-		if(order == null) {
-			System.err.println("no purchase");
+		Order order = orderRepository.findOne(orderId);
+	
+		if (order == null) {
+			System.err.println("no order");
 			return;
 		}
 		
-		System.out.println("Purchase: " + order.toString());
-		
-		if(order.getPurchased() == true) {
+		System.out.println("order: " + order);
+
+		if (order.getPurchased() == true) {
 			System.err.println("already purchased");
 			return;
 		}
-		if(order.getCreditCard() == null) {
-			System.err.println("no credit card");
-			return;
-		}
-		
-		if(order.getShippingAddress() == null) {
-			System.err.println("no shippig address");
-			return;
-		}
-		
-		Account account = accountProxy.findAccount(order.getBuyerAccountId());
-		System.out.println("Buyer: " + account.toString());
-			
+
 		Product product = productProxy.findProduct(order.getProductId());
-		System.out.println("Product: " + product.toString());
-			
-		order.setTotalPrice(order.getProductCount() * product.getPrice().getValue());
+		
+		System.out.println("product info1 ******************************************");
+		System.out.println(product);
+		
+		if (product.getStock() <= 0) {
+			System.err.println("have no stock err");
+			return;
+		}
+		
+		product.setStock( product.getStock() - order.getQty() );
+		productProxy.productsUpdate(product.getId(), product);
+		
+		System.out.println("product info2 ******************************************");
+		System.out.println(product);		
+		
 		order.setPurchased(true);
-		System.out.println("Order: " + order.toString());
-			
 		orderRepository.save(order);
+		
+		System.out.println("order info ******************************************");
+		System.out.println(order);
 	}
+	
 }

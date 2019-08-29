@@ -7,11 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
-import com.sk.sample.siren.order.domain.model.CreditCard;
 import com.sk.sample.siren.order.domain.model.Order;
 import com.sk.sample.siren.order.domain.repository.OrderRepository;
 import com.sk.sample.siren.order.domain.service.OrderService;
-import com.sk.sample.siren.shared.domain.Address;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -24,8 +22,18 @@ public class OrderApplication {
 	@Bean
 	public CommandLineRunner createSampleData(OrderRepository orderRepository, @Qualifier("orderLogic") OrderService orderService) {	
 		return (args) -> {
-			Order order = new Order(1L, 1L, 3);
+
+			//Order(Long accountId, Long storeId, Long productId, Integer qty)
+			Order order = new Order(1L, 1L, 2L, 2);
 			orderRepository.save(order);
+			
+			displayOrders(orderRepository);
+			
+			orderService.purchase(order.getId());
+			
+//			displayOrders(orderRepository);
+			
+/*			
 			orderService.purchase(order.getId());
 		
 			order.setCreditCard(new CreditCard("12341234", "0921"));
@@ -35,7 +43,20 @@ public class OrderApplication {
 			order.setShippingAddress(new Address(12345, "부산"));
 			orderRepository.save(order);
 			orderService.purchase(order.getId());
+*/
 		};
 	}
+	
+	
+	public void displayOrders(OrderRepository orderRepository) {
+		System.out.println("OrderRepository start ******************************************");
+		
+		Iterable<Order> orderList = orderRepository.findAll();
+		for(Order order : orderList) {
+			System.out.println(order.toString());	
+		}
+		
+		System.out.println("OrderRepository end ******************************************");
+	}	
 
 }
