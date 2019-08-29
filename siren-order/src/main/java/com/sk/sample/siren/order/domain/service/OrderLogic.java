@@ -22,8 +22,8 @@ public class OrderLogic implements OrderService {
 	private AccountProxy accountProxy;
 	
 	
-	public Long order(Long accountId, Long storeId, Long productId, Integer qty) {
-		Order order = new Order(accountId, storeId, productId, qty);
+	public Long order(Long accountId, Long productId, Integer qty) {
+		Order order = new Order(accountId, productId, qty);
 		orderRepository.save(order);
 		return order.getId();
 	}
@@ -35,8 +35,8 @@ public class OrderLogic implements OrderService {
 		Order order = orderRepository.findOne(orderId);
 		System.out.println("order: " + order);
 
-		Account account = accountProxy.findAccount(order.getAccountId());
-		System.out.println("Buyer: " + account);
+//		Account account = accountProxy.findAccount(order.getAccountId());
+//		System.out.println("Buyer: " + account);
 
 		if (order.getPurchased() == true) {
 			System.err.println("already purchased");

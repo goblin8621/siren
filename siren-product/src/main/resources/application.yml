@@ -22,6 +22,11 @@ spring:
         show_sql: true
         format_sql: true
         sql_comments: true
+        
+security:
+  basic:
+    enabled: true
+    authorize-mode: NONE
 
 security:
   basic:
