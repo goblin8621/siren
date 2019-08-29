@@ -15,11 +15,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.sk.sample</groupId>
-			<artifactId>siren-shared</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
 			<version>0.10.5</version>
