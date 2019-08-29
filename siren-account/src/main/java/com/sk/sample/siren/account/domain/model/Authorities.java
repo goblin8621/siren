@@ -15,7 +15,7 @@ public class Authorities {
     @Id
     private String id;
     @Column(nullable = false)
-    private String username;
+    private String accountId;
     @Column(nullable = false)
     private String authority;
     
@@ -35,16 +35,16 @@ public class Authorities {
         this.authority = authority;
     }
     
-    public String getUsername() {
-        return username;
+    public String getAccountId() {
+        return accountId;
     }
     
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
     
     @Override
     public String toString() {
-        return "Authorities{" + "username='" + username + '\'' + ", authority='" + authority + '\'' + '}';
+        return "Authorities{" + "id='" + id + '\'' + ", accountId='" + accountId + '\'' + ", authority='" + authority + '\'' + '}';
     }
 }

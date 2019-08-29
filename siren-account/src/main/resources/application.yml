@@ -3,8 +3,8 @@ server:
 
 spring:
   security:
-    users-by-username-query: "SELECT email, password, 'true' FROM account WHERE email=?"
-    authorities-by-username-query: "SELECT username, authority FROM authorities WHERE username=?"
+    users-by-username-query: "SELECT account_id, pw, 'true' FROM account WHERE account_id=?"
+    authorities-by-username-query: "SELECT account_id, authority FROM authorities WHERE account_id=?"
   profiles:
     active: 
     - default

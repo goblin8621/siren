@@ -39,22 +39,48 @@ public class AccountApplication {
 		account1.setAddress(new Address(00000, "성남시 분당구"));
 		accountRepository.save(account1);
 		
+		Authorities authorities = new Authorities();
+		authorities.setId(UUID.randomUUID().toString());
+		authorities.setAccountId("skyk");
+		authorities.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
+		
 		Account account2 = new Account("brightsoil","1234", "brightsoil@sk.com", "김현규", MemberType.SELLER, "010-2222-2222");
 		account2.setAddress(new Address(12345, "서울시 송파구"));
 		accountRepository.save(account2);
+		Authorities authorities2 = new Authorities();
+		authorities2.setId(UUID.randomUUID().toString());
+		authorities2.setAccountId("brightsoil");
+		authorities2.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
+		
 		
 		Account account3 = new Account("edgar.kim","1234","edgar.kim@sk.com", "김종국", MemberType.SELLER,  "010-3333-2222");
 		account3.setAddress(new Address(11111, "서울시 강동구"));
 		accountRepository.save(account3);
+		Authorities authorities3 = new Authorities();
+		authorities3.setId(UUID.randomUUID().toString());
+		authorities3.setAccountId("edgar.kim");
+		authorities3.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 		
 		Account account4 = new Account("goblin8621","1234","goblin8621@sk.com", "백동훈", MemberType.BUYER, MembershipLevelType.GOLD, "010-4444-2222");
 		account4.setAddress(new Address(22222, "서울시 노원구"));
-
 		accountRepository.save(account4);
+		Authorities authorities4 = new Authorities();
+		authorities4.setId(UUID.randomUUID().toString());
+		authorities4.setAccountId("goblin8621");
+		authorities4.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 		
 		Account account5 = new Account("kangyj11","1234","kangyj11@sk.com", "강영주", MemberType.BUYER, MembershipLevelType.GOLD, "010-5555-2222");
 		account5.setAddress(new Address(33333, "경기도 이천시"));
 		accountRepository.save(account5);
+		Authorities authorities5 = new Authorities();
+		authorities5.setId(UUID.randomUUID().toString());
+		authorities5.setAccountId("kangyj11");
+		authorities5.setAuthority("ROLE_ADMIN");
+		authoritiesRepository.save(authorities);
 	}
 	
 	public void displayAccounts(AccountRepository accountRepository) {

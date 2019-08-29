@@ -31,13 +31,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private DataSource dataSource;
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/h2-console").permitAll()
+//                .antMatchers("/h2-console").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/**/v2/api-docs").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
