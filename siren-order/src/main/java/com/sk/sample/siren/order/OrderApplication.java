@@ -40,6 +40,8 @@ public class OrderApplication {
 			orderService.purchase(order3.getId());			
 
 			displayOrders(orderRepository);
+			
+			System.out.println("test............");
 		};
 	}
 	
