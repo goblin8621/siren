@@ -28,6 +28,11 @@ security:
     enabled: true
     authorize-mode: NONE
 
+security:
+  basic:
+    enabled: true
+    authorize-mode: NONE
+
 logging:
   level: 
     org.hibernate.type: trace
