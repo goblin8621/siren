@@ -118,7 +118,7 @@ public class ProductApplication {
 
 		System.out.println("Result: " + product.toString());
 	}
-	/*	
+	/*	 
 	public void executeExample5(ProductRepository productRepository) {
 		List<Product> product =  productRepository.findByPriceValueGreaterThanEqual(3000);	//아메리카노를 찾아라
 
