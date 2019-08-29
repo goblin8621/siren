@@ -23,9 +23,10 @@ public class OrderApplication {
 	public CommandLineRunner createSampleData(OrderRepository orderRepository, @Qualifier("orderLogic") OrderService orderService) {	
 		return (args) -> {
 			//Order(Long accountId, Long storeId, Long productId, Integer qty)
-			
+
+/*			
 			displayOrders(orderRepository);
-			
+
 			Order order1 = new Order(1L, 1L, 2L, 2);
 			orderRepository.save(order1);
 			orderService.purchase(order1.getId());
@@ -40,6 +41,11 @@ public class OrderApplication {
 			orderService.purchase(order3.getId());			
 
 			displayOrders(orderRepository);
+			
+			orderRepository.delete(3L);
+			
+			displayOrders(orderRepository);
+*/			
 		};
 	}
 	

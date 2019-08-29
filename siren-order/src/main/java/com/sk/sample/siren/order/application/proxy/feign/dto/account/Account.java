@@ -11,10 +11,15 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode
 public class Account {
+
+	private String accountId;
+	private String pw;
 	private String email;
 	private String name;
+	private String phoneNumber;
 	
-	@Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.ORDINAL)
 	private MemberType memberType;
 	
 	@Enumerated(EnumType.STRING)
@@ -22,15 +27,27 @@ public class Account {
 	
 	private Address address;
 	
-	public Account(String email, String name, MemberType memberType) {
-		this(email, name, memberType, MembershipLevelType.SILVER);
-	}
 	
-	public Account(String email, String name, MemberType memberType, MembershipLevelType membershipLevelType) {
+	public Account(String accountId, String pw, String email, String name, MemberType memberType, MembershipLevelType membershipLevelType, String phoneNumber) {
+		this.accountId=accountId;
+		this.pw=pw;
 		this.email = email;
 		this.name = name;
 		this.memberType = memberType;
 		this.membershipLevelType = membershipLevelType;
+		this.phoneNumber = phoneNumber;
+
 	}
+	
+	public Account(String accountId, String pw, String email, String name, MemberType memberType,  String phoneNumber) {
+		this.accountId=accountId;
+		this.pw=pw;
+		this.email = email;
+		this.name = name;
+		this.memberType = memberType;
+		this.phoneNumber = phoneNumber;
+
+	}
+	
 }
 
