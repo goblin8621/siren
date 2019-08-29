@@ -1,5 +1,7 @@
 package com.sk.sample.siren.account.config;
 
+import com.sk.sample.siren.account.filter.JwtAuthenticationFilter;
+import com.sk.sample.siren.account.filter.JwtAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +32,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/h2-console").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager()))
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
