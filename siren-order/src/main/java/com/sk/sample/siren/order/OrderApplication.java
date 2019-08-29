@@ -22,28 +22,24 @@ public class OrderApplication {
 	@Bean
 	public CommandLineRunner createSampleData(OrderRepository orderRepository, @Qualifier("orderLogic") OrderService orderService) {	
 		return (args) -> {
-
 			//Order(Long accountId, Long storeId, Long productId, Integer qty)
-			Order order = new Order(1L, 1L, 2L, 2);
-			orderRepository.save(order);
 			
 			displayOrders(orderRepository);
 			
-			orderService.purchase(order.getId());
+			Order order1 = new Order(1L, 1L, 2L, 2);
+			orderRepository.save(order1);
+			orderService.purchase(order1.getId());
 			
-//			displayOrders(orderRepository);
+			Order order2 = new Order(1L, 1L, 1L, 5);
+			orderRepository.save(order2);
+			orderService.purchase(order2.getId());
 			
-/*			
-			orderService.purchase(order.getId());
-		
-			order.setCreditCard(new CreditCard("12341234", "0921"));
-			orderRepository.save(order);
-			orderService.purchase(order.getId());
 			
-			order.setShippingAddress(new Address(12345, "부산"));
-			orderRepository.save(order);
-			orderService.purchase(order.getId());
-*/
+			Order order3 = new Order(1L, 1L, 1L, 20);
+			orderRepository.save(order3);
+			orderService.purchase(order3.getId());			
+
+			displayOrders(orderRepository);
 		};
 	}
 	

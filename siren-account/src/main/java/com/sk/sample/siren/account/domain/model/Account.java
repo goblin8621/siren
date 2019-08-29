@@ -1,3 +1,4 @@
+
 package com.sk.sample.siren.account.domain.model;
 
 import javax.persistence.Entity;
@@ -53,4 +54,3 @@ public class Account extends AbstractEntity implements AggregateRoot {
 
 	}
 }
-

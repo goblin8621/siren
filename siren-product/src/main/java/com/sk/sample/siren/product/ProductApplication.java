@@ -39,15 +39,19 @@ public class ProductApplication {
 		productRepository.save(product1);
 		
 		Product product2 = new Product(1L, "라떼", 3000, 15);
+		product2.setMisc("맛있는 라떼.");
 		productRepository.save(product2);
 		
 		Product product3 = new Product(1L, "카페오카", 4500, 5);
+		product3.setMisc("향긋한 카페모카.");
 		productRepository.save(product3);
 		
 		Product product4 = new Product(1L, "아이스티", 2800, 10);
+		product4.setMisc("시원한 아이스티.....");
 		productRepository.save(product4);
 		
 		Product product5 = new Product(1L, "에스프레소", 2000, 3);
+		product5.setMisc("진한 에스프레소....");
 		productRepository.save(product5);		
 	}
 	
