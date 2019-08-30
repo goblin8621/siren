@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: siren-account-deployment
+  labels:
+    app: siren-account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: siren-account
+  template:
+    metadata:
+      labels:
+        app: siren-account
+    spec:
+      containers:
+      - name: siren-account
+        image: goblin8621/siren-account:0.0.1
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
