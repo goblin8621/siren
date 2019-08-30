@@ -55,7 +55,8 @@ public class ProductProxy {
 		Resource<Product> findProduct(@PathVariable("id") Long id);
 		
 		@PutMapping("products/{id}")
-		Product productsUpdate(@PathVariable("id") Long id, @RequestBody Product product);		
+		Product productsUpdate(@PathVariable("id") Long id, @RequestBody Product product);
+		
 
 /*		
 		@GetMapping("products")
