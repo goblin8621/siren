@@ -47,8 +47,8 @@ public class ProductProxy {
 	}
 */		
 
-
-	@FeignClient(name="products", url="http://localhost:11002", configuration=FeignClientConfiguration.class)
+	
+	@FeignClient(name="products", url="http://siren-product-service:8081", configuration=FeignClientConfiguration.class)
 	interface ProductClient {
 		
 		@GetMapping("products/{id}")

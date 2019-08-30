@@ -35,7 +35,7 @@ public class AccountProxy {
 		return accountClient.findAccount(name);
 	}
 
-	@FeignClient(name="accounts", url="http://localhost:11001", configuration=FeignClientConfiguration.class)
+	@FeignClient(name="accounts", url="http://siren-account-service:8081", configuration=FeignClientConfiguration.class)
 	interface AccountClient {
 		@GetMapping("accounts/{id}")
 		Resource<Account> findAccount(@PathVariable("id") Long id);
